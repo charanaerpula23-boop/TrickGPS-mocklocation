@@ -1,129 +1,57 @@
 # trick-gps
 
-[**Download Production APK (v1.0 - Release, 5.99 MB)**](releases/trick-gps-v1.0-release.apk)
+**trick-gps** is an open-source Android mock location application designed for developers to test location-dependent behaviors. It supports static coordinate spoofing, route-based road travel simulation, and virtual joystick controls with a foreground service for persistent background sessions.
 
-trick-gps is an Android mock location app for testing location-dependent behavior on standard Android phones. It supports both fixed spoofed coordinates and route-based travel simulation, with search, map picking, and a foreground service that keeps sessions alive more reliably.
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Android SDK](https://img.shields.io/badge/SDK-29%2B-brightgreen.svg)](app/build.gradle.kts)
 
-## What It Does
+## Features
 
-- Pick a single mock location from the map or search and keep the device pinned there
-- Simulate travel between two locations along a road route
-- Search places by name with Android Geocoder (Google Play Services)
-- Select locations visually on a map picker
-- Continue active mock sessions through a foreground service
-- Restore active sessions after task removal or process restart
-
-## Feature Summary
-
-- Static mock mode
-- Travel mode with route interpolation
-- Place search with location suggestions
-- Map-first location selection flow
-- White / black / pink Material 3 UI
-- Custom map selection pin
-- Session persistence for active mock runs
-
-## How It Works
-
-trick-gps uses Android's mock location testing path through `LocationManager` test providers. The app registers itself as a mock location app through Developer Options, then publishes fake GPS/network locations from a foreground service.
-
-Travel mode fetches a road route and emits gradual position updates over time to simulate movement instead of jumping directly from point A to point B.
+- **Static GPS Spoofing**: Center the map or search coordinates to set a fixed mock location.
+- **Route Simulation (Travel Mode)**: Set a starting and ending point to simulate continuous road travel with adjustable speeds.
+- **Virtual Joystick**: Manually navigate and update mock coordinates in real time.
+- **Random City Selector**: Automatically mock locations across pre-configured global cities.
+- **Foreground Service**: Mock location sessions remain active when the app is minimized.
+- **Offline Map View**: Leverages `osmdroid` for responsive offline satellite and street map rendering.
 
 ## Requirements
 
-- Android 10+ (`minSdk 29`)
-- Developer Options enabled on the device
-- trick-gps selected in `Developer Options > Select mock location app`
-- Internet connection for place search and route lookup
+- Android 10 or higher (API level 29+)
+- Developer Options enabled
+- Selected as the active mock location app in developer settings
 
-## Setup On Device
+## Setup Guide
 
-1. Install the app.
-2. Open Android settings.
-3. Enable Developer Options if not already enabled.
-4. Go to `Developer Options > Select mock location app`.
-5. Choose `trick-gps`.
-6. Open the app and pick a location or route.
+1. Install the APK on your device.
+2. Enable Developer Options:
+   * Go to **Settings** → **About phone**.
+   * Tap **Build number** 7 times.
+3. Select the mock location provider:
+   * Go to **Developer Options** → **Select mock location app**.
+   * Choose **trick-gps**.
+4. Launch the application, search or pick coordinates, and tap **Start Mocking**.
 
-## Usage
+## Technology Stack
 
-### Static Mock
+- **Framework**: Jetpack Compose (Kotlin)
+- **UI Components**: Material 3
+- **Map Library**: osmdroid
+- **Routing API**: OSRM (Open Source Routing Machine)
+- **Geocoding**: Google Play Services Geocoder & OpenStreetMap Nominatim API
 
-1. Search for a location or tap the location card to open the map.
-2. Pick the target point.
-3. Adjust accuracy if needed.
-4. Tap `Start Mocking`.
-5. Tap `Stop Mocking` to end the session.
-
-### Travel Mode
-
-1. Choose a start location.
-2. Choose an end location.
-3. Set the travel speed.
-4. Tap `Fetch Route via Road`.
-5. Tap `Start Travel`.
-6. The app will move the reported device location along the route.
-
-## Tech Stack
-
-- Kotlin
-- Jetpack Compose
-- Material 3
-- Android foreground service
-- osmdroid for the map view
-- Android Geocoder for location search (Nominatim fallback)
-- OSRM public API for road routing
-
-## Project Structure
-
-- `app/src/main/java/com/charanhyper/tech/greydailer/`: core app logic, service, view models, and screens
-- `app/src/main/java/com/charanhyper/tech/greydailer/ui/`: Compose UI screens and shared UI components
-- `app/src/main/java/com/charanhyper/tech/greydailer/ui/theme/`: app theme, colors, and typography
-- `app/src/main/res/`: Android resources, strings, icons, and XML config
-
-## Build
+## Building and Installing
 
 ### Windows
-
-```bat
+```cmd
 gradlew.bat :app:assembleDebug
-```
-
-### macOS / Linux
-
-```bash
-./gradlew :app:assembleDebug
-```
-
-## Install
-
-### Windows
-
-```bat
 gradlew.bat installDebug
 ```
 
 ### macOS / Linux
-
 ```bash
+./gradlew :app:assembleDebug
 ./gradlew installDebug
 ```
 
-## Development Notes
-
-- Search results come from Android's built-in Geocoder (Google Play Services) with Nominatim as fallback.
-- Route generation depends on the public OSRM endpoint.
-- Active sessions are persisted and restored by the foreground service.
-- The current package name still uses the original internal namespace: `com.charanhyper.tech.greydailer`.
-
-## Open Source
-
-This repository is open source under the MIT license. Contributions, bug reports, and cleanup PRs are welcome.
-
-## Author
-
-Developed by Charan.
-
 ## License
-
-MIT. See [LICENSE](LICENSE).
+MIT License. See [LICENSE](LICENSE) for details.
