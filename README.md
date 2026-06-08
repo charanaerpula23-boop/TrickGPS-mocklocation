@@ -1,8 +1,11 @@
-# TrickGPS 📍 | Android Mock Location App, Fake GPS Spoofer & Virtual Joystick
+# TrickGPS
 
-**TrickGPS** is a premium, open-source Android mock location application and GPS spoofer designed for developers, QA testers, and power users. It provides robust location simulation tools to test location-dependent apps, geofencing APIs, navigation systems, and route-based logic.
+<p align="center">
+  <img src="logo.png" alt="TrickGPS Logo" width="128" />
+</p>
 
----
+**TrickGPS** is an Android mock location application. It helps developers test location-dependent apps, simulate routes, and control coordinate updates via a virtual joystick.
+
 
 ### 📥 Download Latest Release
 [![Download APK](https://img.shields.io/badge/Download-Release_APK_v1.0-brightgreen?style=for-the-badge&logo=android&logoColor=white)](releases/trick-gps-v1.0-release.apk)  
